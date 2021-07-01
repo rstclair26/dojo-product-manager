@@ -11,3 +11,9 @@
 .Details {
   margin: 200px auto;
 }
+
+.ListTable {
+  border: 0;
+  width: 50%;
+  margin: auto;
+}

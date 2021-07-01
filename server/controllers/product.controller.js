@@ -41,3 +41,11 @@ module.exports.getProduct = (req, res) => {
             console.log(err)
         })
 }
+
+module.exports.updateProduct = (req, res) => {
+    console.log(req.body);
+
+    Product.findOneAndUpdate({ _id: req.params.id }, req.body, { new: true })
+        .then((updatedProduct) => res.json(updatedProduct))
+        .catch((err) => res.json(err))
+}
