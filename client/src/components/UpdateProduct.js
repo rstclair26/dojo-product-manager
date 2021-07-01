@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { navigate } from "@reach/router";
+import DeleteProduct from "./DeleteProduct";
 
 const UpdateProduct = (props) => {
     const { id } = props;
@@ -31,6 +32,10 @@ const UpdateProduct = (props) => {
         setProduct(updatedProduct);
     }
 
+    const postDeleteHandler = () => {
+        navigate("/products");
+    }
+
     return (
         <div>
             <h2>Update Product</h2>
@@ -48,6 +53,9 @@ const UpdateProduct = (props) => {
                     <input id="description" name="description" type="text" value={ product.description } onChange={ (e) => onChangeHandler(e) }/>
                 </p>
                 <input type="submit" value="Update"/>
+                <p>
+                    <DeleteProduct id={ id } postDeleteHandler={ postDeleteHandler }/>
+                </p>
             </form>
         </div>
     )

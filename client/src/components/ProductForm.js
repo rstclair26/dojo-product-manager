@@ -13,7 +13,7 @@ const ProductForm = () => {
     
         axios.post("http://localhost:8000/api/products", product)
             .then((res) => console.log(res))
-            .catch((err) => console.log(err))
+            .catch((err) => console.log(err));
     }
 
     const onChangeHandler = (e) => {

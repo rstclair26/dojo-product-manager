@@ -1,8 +1,23 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { Link } from "@reach/router"
+import DeleteProduct from "./DeleteProduct";
 
 const ProductList = (props) => {
-    const { products } = props;
+    const [ products, setProducts ] = useState([]);
+
+    useEffect(() => {
+        axios.get("http://localhost:8000/api/products")
+            .then((res) => {
+                console.log(res.data);
+                setProducts(res.data);
+            });
+    }, []);
+
+    const postDeleteHandler = (deletedProductId) => {
+        let updatedProducts = products.filter((product) => product._id !== deletedProductId);
+        setProducts(updatedProducts);
+    }
 
     return (
         <div>
@@ -25,7 +40,7 @@ const ProductList = (props) => {
                                     </Link>
                                 </td>
                                 <td>
-                                    <button>Delete</button>
+                                    <DeleteProduct id={ product._id } postDeleteHandler={ postDeleteHandler }/>
                                 </td>
                             </tr>
                         )
